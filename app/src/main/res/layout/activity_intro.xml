@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IntroActivity"
+    android:background="#009999">
+
+
+    <Button
+        android:id="@+id/nextToBtn"
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="22dp"
+        android:background="#CCFFFF"
+        android:text="Verder "
+        android:textColor="#009999" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="296dp"
+        android:layout_height="288dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="67dp"
+        android:text="Hier Intro en nog meer text om even uit te proberen hoe het staat. blabla bla bla bla "
+        android:textColor="#CCFFFF"
+        android:textSize="36sp" />
+
+</RelativeLayout>

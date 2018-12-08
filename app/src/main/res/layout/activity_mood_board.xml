@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MoodBoardActivity">
+
+    <ImageView
+        android:id="@+id/moodBoardImageView2"
+        android:layout_width="102dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="145dp"
+        android:layout_marginEnd="260dp"
+        app:srcCompat="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/moodBoardImageView3"
+        android:layout_width="102dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="313dp"
+        android:layout_marginEnd="11dp"
+        app:srcCompat="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/moodBoardImageView4"
+        android:layout_width="102dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="142dp"
+        app:srcCompat="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/moodBoardImageView5"
+        android:layout_width="102dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="317dp"
+        android:layout_marginEnd="260dp"
+        app:srcCompat="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/moodBoardImageView6"
+        android:layout_width="102dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="229dp"
+        android:layout_marginEnd="11dp"
+        app:srcCompat="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/moodBoardImageView7"
+        android:layout_width="102dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="228dp"
+        android:layout_marginEnd="142dp"
+        app:srcCompat="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/moodBoardImageView8"
+        android:layout_width="102dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="229dp"
+        android:layout_marginEnd="258dp"
+        app:srcCompat="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/moodBoardImageView9"
+        android:layout_width="102dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="147dp"
+        android:layout_marginEnd="17dp"
+        app:srcCompat="@android:color/white" />
+
+    <TextView
+        android:id="@+id/moodBoard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="MoodBoard"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/moodBoard"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-131dp"
+        android:layout_marginTop="39dp"
+        android:text="Maak screenshots van afbeeldingen die jou doel weergeven. Plak er zoveel neer als je wilt"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="503dp"
+        android:layout_marginEnd="77dp"
+        android:text="Verder" />
+
+    <ImageView
+        android:id="@+id/moodBoardImageView"
+        android:layout_width="102dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="146dp"
+        android:layout_marginEnd="142dp"
+        app:srcCompat="@android:color/white" />
+
+    <Button
+        android:id="@+id/nextGoalBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/moodBoard"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-133dp"
+        android:layout_marginTop="501dp"
+        android:text="Nog een doel" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="97dp"
+        android:text="TextView" />
+</RelativeLayout>
