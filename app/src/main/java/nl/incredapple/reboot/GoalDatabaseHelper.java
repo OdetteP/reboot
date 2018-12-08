@@ -43,7 +43,7 @@ public class GoalDatabaseHelper  extends SQLiteOpenHelper {
 
     }
 
-    public  boolean insertData (String goal, String mWhere, String mWhen, String how, String precise, String more) {
+    public long insertData (String goal, String mWhere, String mWhen, String how, String precise, String more) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_GOAL, goal);
@@ -53,13 +53,9 @@ public class GoalDatabaseHelper  extends SQLiteOpenHelper {
         contentValues.put(COLUMN_PRECISE, precise);
         contentValues.put(COLUMN_MORE, more);
 
-        long result = db.insert(TABLE_NAME, null, contentValues);
+        long id = db.insert(TABLE_NAME, null, contentValues);
 
-        if (result == -1) {
-            return false;
-        }else {
-            return true;
-        }
+        return id;
     }
 
     public Cursor getData(){

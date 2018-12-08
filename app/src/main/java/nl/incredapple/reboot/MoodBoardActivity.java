@@ -51,6 +51,8 @@ public class MoodBoardActivity extends AppCompatActivity {
     private ArrayList<String> imagesPathList;
     private ViewGroup lnrImages;
     int PICK_IMAGE_MULTIPLE;
+    private ArrayList<String> urls;
+    private Long goalId;
 
 
     @Override
@@ -58,10 +60,13 @@ public class MoodBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mood_board);
 
+        urls = new ArrayList<>();
+
         Button nextToMainBtn = findViewById(R.id.nextBtn);
         Button nextGoalBtn = findViewById(R.id.nextGoalBtn);
 //        Button galleryBtn = findViewById(R.id.galleryBtn);
-
+        Intent intent = getIntent();
+        goalId = intent.getLongExtra("goalId" , 0 );
         moodBoardImage = findViewById(R.id.moodBoardImageView);
         moodBoardImage2 = findViewById(R.id.moodBoardImageView2);
         moodBoardImage3 = findViewById(R.id.moodBoardImageView3);
@@ -78,10 +83,7 @@ public class MoodBoardActivity extends AppCompatActivity {
         nextGoalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(getApplicationContext());
-                id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-
-
+                saveImages();
                 Intent nextGoalIntent = new Intent(MoodBoardActivity.this, GoalActivity.class);
                 startActivity(nextGoalIntent);
 
@@ -91,9 +93,7 @@ public class MoodBoardActivity extends AppCompatActivity {
         nextToMainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(getApplicationContext());
-                id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-
+                saveImages();
                 Intent nextToMainIntent = new Intent(MoodBoardActivity.this, MainActivity.class);
                 startActivity(nextToMainIntent);
 
@@ -184,174 +184,89 @@ public class MoodBoardActivity extends AppCompatActivity {
         }
     }
 
+    private void saveImages() {
+        moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(getApplicationContext());
+        for (int image = 0 ; image < urls.size() ; image++) {
+            moodBoardDatabaseHelper.insertDestinationURL(urls.get(image),goalId);
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == RESULT_LOAD_IMG ){
             Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-
-            assert cursor != null;
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            Bitmap bm = BitmapFactory.decodeFile(picturePath);
-            Log.i("Hii...", "After Cursor..");
-            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-            moodBoardImage.setImageBitmap(bm);
+//            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//
+//            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+//
+//            assert cursor != null;
+//            cursor.moveToFirst();
+//
+//            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//            picturePath = cursor.getString(columnIndex);
+//            cursor.close();
+//            Bitmap bm = BitmapFactory.decodeFile(picturePath);
+//            Log.i("Hii...", "After Cursor..");
+//            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
+//            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
+            urls.add(String.valueOf(selectedImage));
+            moodBoardImage.setImageURI(selectedImage);
 
         }else if (requestCode == RESULT_LOAD_IMG2){
-            Uri selectedImage2 = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage2, filePathColumn, null, null, null);
-
-            assert cursor != null;
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            Bitmap bm = BitmapFactory.decodeFile(picturePath);
-            Log.i("Hii...", "After Cursor..");
-            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-            moodBoardImage2.setImageBitmap(bm);
+            Uri selectedImage = data.getData();
+//            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//
+//            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+//
+//            assert cursor != null;
+//            cursor.moveToFirst();
+//
+//            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//            picturePath = cursor.getString(columnIndex);
+//            cursor.close();
+//            Bitmap bm = BitmapFactory.decodeFile(picturePath);
+//            Log.i("Hii...", "After Cursor..");
+//            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
+//            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
+            urls.add(String.valueOf(selectedImage));
+            moodBoardImage2.setImageURI(selectedImage);
 
         }else if (requestCode == RESULT_LOAD_IMG3){
             Uri selectedImage3 = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage3, filePathColumn, null, null, null);
-
-            assert cursor != null;
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            Bitmap bm = BitmapFactory.decodeFile(picturePath);
-            Log.i("Hii...", "After Cursor..");
-            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-            moodBoardImage3.setImageBitmap(bm);
+            urls.add(String.valueOf(selectedImage3));
+            moodBoardImage3.setImageURI(selectedImage3);
 
         }else if (requestCode == RESULT_LOAD_IMG4){
-            Uri selectedImage4 = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage4, filePathColumn, null, null, null);
-
-            assert cursor != null;
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            Bitmap bm = BitmapFactory.decodeFile(picturePath);
-            Log.i("Hii...", "After Cursor..");
-
-            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-            moodBoardImage4.setImageBitmap(bm);
+            Uri selectedImage3 = data.getData();
+            urls.add(String.valueOf(selectedImage3));
+            moodBoardImage4.setImageURI(selectedImage3);
 
         }else if (requestCode == RESULT_LOAD_IMG5){
-            Uri selectedImage5 = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage5, filePathColumn, null, null, null);
-
-            assert cursor != null;
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            Bitmap bm = BitmapFactory.decodeFile(picturePath);
-            Log.i("Hii...", "After Cursor..");
-
-            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-            moodBoardImage5.setImageBitmap(bm);
+            Uri selectedImage3 = data.getData();
+            urls.add(String.valueOf(selectedImage3));
+            moodBoardImage5.setImageURI(selectedImage3);
 
         }else if (requestCode == RESULT_LOAD_IMG6){
-            Uri selectedImage6 = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage6, filePathColumn, null, null, null);
-
-            assert cursor != null;
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            Bitmap bm = BitmapFactory.decodeFile(picturePath);
-            Log.i("Hii...", "After Cursor..");
-
-            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-            moodBoardImage6.setImageBitmap(bm);
+            Uri selectedImage3 = data.getData();
+            urls.add(String.valueOf(selectedImage3));
+            moodBoardImage6.setImageURI(selectedImage3);
 
         }else if (requestCode == RESULT_LOAD_IMG7){
-            Uri selectedImage7 = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage7, filePathColumn, null, null, null);
-
-            assert cursor != null;
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            Bitmap bm = BitmapFactory.decodeFile(picturePath);
-            Log.i("Hii...", "After Cursor..");
-            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-            moodBoardImage7.setImageBitmap(bm);
+            Uri selectedImage3 = data.getData();
+            urls.add(String.valueOf(selectedImage3));
+            moodBoardImage7.setImageURI(selectedImage3);
 
         }else if (requestCode == RESULT_LOAD_IMG8){
-            Uri selectedImage8 = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage8, filePathColumn, null, null, null);
-
-            assert cursor != null;
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            Bitmap bm = BitmapFactory.decodeFile(picturePath);
-            Log.i("Hii...", "After Cursor..");
-            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-            moodBoardImage8.setImageBitmap(bm);
+            Uri selectedImage3 = data.getData();
+            urls.add(String.valueOf(selectedImage3));
+            moodBoardImage8.setImageURI(selectedImage3);
 
         }else if (requestCode == RESULT_LOAD_IMG9){
-            Uri selectedImage9 = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage9, filePathColumn, null, null, null);
-
-            assert cursor != null;
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            Bitmap bm = BitmapFactory.decodeFile(picturePath);
-            Log.i("Hii...", "After Cursor..");
-            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-            moodBoardImage9.setImageBitmap(bm);
+            Uri selectedImage3 = data.getData();
+            urls.add(String.valueOf(selectedImage3));
+            moodBoardImage9.setImageURI(selectedImage3);
 
         }
     }

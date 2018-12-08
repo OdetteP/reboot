@@ -13,11 +13,15 @@ public class PositiveThoughtsActivity extends AppCompatActivity {
     PositiveThoughtsDatabaseHelper positiveThoughtsDatabaseHelper;
     EditText thought1EditText, thought2EditText, thought3EditText, thought4EditText, thought5EditText;
     Button nextPageBtn, exampleBtn;
+    Long goalId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_positive_thoughts);
+
+        Intent intent = getIntent();
+        goalId = intent.getLongExtra("goalId" , 0 );
 
         positiveThoughtsDatabaseHelper = new PositiveThoughtsDatabaseHelper(this);
 
@@ -33,16 +37,17 @@ public class PositiveThoughtsActivity extends AppCompatActivity {
         nextPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String thought1Text = thought1EditText.getText().toString();
-                String thought2Text = thought2EditText.getText().toString();
-                String thought3Text = thought3EditText.getText().toString();
-                String thought4Text = thought4EditText.getText().toString();
-                String thought5Text = thought5EditText.getText().toString();
 
-                positiveThoughtsDatabaseHelper.insertData(thought1Text, thought2Text, thought3Text, thought4Text, thought5Text);
+                positiveThoughtsDatabaseHelper.insertData(thought1EditText.getText().toString(),goalId);
+                positiveThoughtsDatabaseHelper.insertData(thought2EditText.getText().toString(),goalId);
+                positiveThoughtsDatabaseHelper.insertData(thought3EditText.getText().toString(),goalId);
+                positiveThoughtsDatabaseHelper.insertData(thought4EditText.getText().toString(),goalId);
+                positiveThoughtsDatabaseHelper.insertData(thought5EditText.getText().toString(),goalId);
+
                 Toast.makeText(PositiveThoughtsActivity.this, "DataSaved", Toast.LENGTH_LONG).show();
 
                 Intent nextPageIntent = new Intent(PositiveThoughtsActivity.this, MoodBoardActivity.class);
+                nextPageIntent.putExtra("goalId", goalId);
                 startActivity(nextPageIntent);
             }
         });

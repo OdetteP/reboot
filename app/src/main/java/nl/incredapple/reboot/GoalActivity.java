@@ -41,10 +41,11 @@ public class GoalActivity extends AppCompatActivity {
                 String precise = preciseEditText.getText().toString();
                 String more = moreEditText.getText().toString();
 
-                goalDatabaseHelper.insertData(goal, where, when, how, precise, more);
+                long goalId = goalDatabaseHelper.insertData(goal, where, when, how, precise, more);
                 Toast.makeText(GoalActivity.this, "DataSaved", Toast.LENGTH_LONG).show();
 
                 Intent nextToIntent = new Intent(GoalActivity.this, PositiveThoughtsActivity.class);
+                nextToIntent.putExtra("goalId", goalId);
                 startActivity(nextToIntent);
             }
         });
