@@ -1,6 +1,7 @@
 package nl.incredapple.reboot;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,12 @@ public class PositiveThoughtsActivity extends AppCompatActivity {
         thought3EditText = findViewById(R.id.thought3EditText);
         thought4EditText = findViewById(R.id.thought4EditText);
         thought5EditText = findViewById(R.id.thought5EditText);
+
+        MainModel mMainModel = new MainModel();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            thought1EditText.setText(mMainModel.getPositiveThoughts(Math.toIntExact(goalId))[1]);
+        }
 
         nextPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override

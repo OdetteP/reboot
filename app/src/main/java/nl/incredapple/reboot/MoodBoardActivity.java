@@ -44,13 +44,8 @@ public class MoodBoardActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMG9 = 9;
     ImageView moodBoardImage, moodBoardImage2, moodBoardImage3, moodBoardImage4, moodBoardImage5,
             moodBoardImage6, moodBoardImage7, moodBoardImage8, moodBoardImage9;
-    String picturePath;
     int id;
     public final int REQUEST_CODE_FOR_PERMISSIONS = 1001;
-    Bitmap bm ;
-    private ArrayList<String> imagesPathList;
-    private ViewGroup lnrImages;
-    int PICK_IMAGE_MULTIPLE;
     private ArrayList<String> urls;
     private Long goalId;
 
@@ -64,9 +59,10 @@ public class MoodBoardActivity extends AppCompatActivity {
 
         Button nextToMainBtn = findViewById(R.id.nextBtn);
         Button nextGoalBtn = findViewById(R.id.nextGoalBtn);
-//        Button galleryBtn = findViewById(R.id.galleryBtn);
+
         Intent intent = getIntent();
         goalId = intent.getLongExtra("goalId" , 0 );
+
         moodBoardImage = findViewById(R.id.moodBoardImageView);
         moodBoardImage2 = findViewById(R.id.moodBoardImageView2);
         moodBoardImage3 = findViewById(R.id.moodBoardImageView3);
@@ -86,7 +82,6 @@ public class MoodBoardActivity extends AppCompatActivity {
                 saveImages();
                 Intent nextGoalIntent = new Intent(MoodBoardActivity.this, GoalActivity.class);
                 startActivity(nextGoalIntent);
-
             }
         });
 
@@ -96,10 +91,6 @@ public class MoodBoardActivity extends AppCompatActivity {
                 saveImages();
                 Intent nextToMainIntent = new Intent(MoodBoardActivity.this, MainActivity.class);
                 startActivity(nextToMainIntent);
-
-
-
-
             }
         });
 
@@ -216,20 +207,6 @@ public class MoodBoardActivity extends AppCompatActivity {
 
         }else if (requestCode == RESULT_LOAD_IMG2){
             Uri selectedImage = data.getData();
-//            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-//
-//            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-//
-//            assert cursor != null;
-//            cursor.moveToFirst();
-//
-//            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//            picturePath = cursor.getString(columnIndex);
-//            cursor.close();
-//            Bitmap bm = BitmapFactory.decodeFile(picturePath);
-//            Log.i("Hii...", "After Cursor..");
-//            moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-//            int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
             urls.add(String.valueOf(selectedImage));
             moodBoardImage2.setImageURI(selectedImage);
 
@@ -278,13 +255,5 @@ public class MoodBoardActivity extends AppCompatActivity {
             //You need to handle permission results, if user didn't allow them.
         }
     }
-
-//    public void getImage(Bitmap bm) {
-//        Log.i("Hi..", "In getImage "+bm);
-//        moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
-//        int id = (int) moodBoardDatabaseHelper.insertBitmap(bm);
-//        moodBoardImage.setImageBitmap(moodBoardDatabaseHelper.getBitmaps(id));
-//    }
-
 
 }

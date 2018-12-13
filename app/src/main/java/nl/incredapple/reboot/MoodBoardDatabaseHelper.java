@@ -27,6 +27,7 @@ public class MoodBoardDatabaseHelper  extends SQLiteOpenHelper {
                     COLUMN_GOAL_ID + "INTEGER,"  +
                     COLUMN_IMAGE_URL + " STRING);";
 
+    
     public MoodBoardDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

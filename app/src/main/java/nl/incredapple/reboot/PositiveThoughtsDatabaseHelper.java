@@ -4,15 +4,18 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "Positive Thoughts";
     private static final String TABLE_NAME = "PT";
-    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_ID = "idp";
     private static final String COLUMN_PT1 = "positiveThought1";
     private static final String COLUMN_GOAL_ID = "goalId";
 
@@ -51,5 +54,32 @@ public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public String[] getPositiveThoughtsFor(int goalId) {
+        final SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> arrayOfPositiveThoughtForGoal = new ArrayList<>();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GOAL_ID + " = " + goalId;
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    String imageURL = cursor.getColumnName(3);
+                    arrayOfPositiveThoughtForGoal.add(imageURL);
+                }
+            }
+
+            db.setTransactionSuccessful();
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+
+        } finally {
+            db.endTransaction();
+            // End the transaction.
+            db.close();
+            // Close database
+        }
+        return arrayOfPositiveThoughtForGoal.toArray(new String[0]);
+    }
 
 }
