@@ -11,27 +11,18 @@ public class MainModel {
 
     Integer[] id;
     String[] goal;
-    String[] where;
+    String[] mWhere;
     String[] when;
     String[] how;
     String[] precise;
-    String[] more;
-
-    Integer [] idp;
-    String[] positiveThought1;
-    Integer [] goalId;
-
+    String[] mMore;
 
     GoalDatabaseHelper goalDatabaseHelper;
-
-    PositiveThoughtsDatabaseHelper positiveThoughtsDatabaseHelper;
 
     public void initialize(Context context) {
         goalDatabaseHelper = new GoalDatabaseHelper(context);
         goalListView();
-        positiveThoughtsListView();
     }
-
 
     private void goalListView() {
         Cursor data = goalDatabaseHelper.getData();
@@ -55,11 +46,11 @@ public class MainModel {
 
         id = idData.toArray(new Integer[0]);
         goal = goalData.toArray(new String[0]);
-        where = whereData.toArray(new String[0]);
+        mWhere = whereData.toArray(new String[0]);
         when = whenData.toArray(new String[0]);
         how = howData.toArray(new String[0]);
         precise = preciseData.toArray(new String[0]);
-        more = moreData.toArray(new String[0]);
+        mMore = moreData.toArray(new String[0]);
     }
 
     public List<String> getGoals() {
@@ -73,12 +64,23 @@ public class MainModel {
         return goals;
     }
 
-    public String[] getOneGoal() {
+    public List<Long> getGoalIds() {
+
+        ArrayList<Long> goalIds = new ArrayList<Long>();
+
+        for (int rij = 0; rij < id.length; rij++) {
+            goalIds.add(Long.valueOf(id[rij]));
+        }
+
+        return goalIds;
+    }
+
+    public String[] getGoal() {
         return goal;
     }
 
     public String[] getWhere() {
-        return where;
+        return mWhere;
     }
 
     public String[] getWhen() {
@@ -94,75 +96,9 @@ public class MainModel {
     }
 
     public String[] getMore() {
-        return more;
+        return mMore;
     }
 
-
-    private void positiveThoughtsListView() {
-        Cursor data = positiveThoughtsDatabaseHelper.getData();
-        ArrayList<Integer> idpData = new ArrayList<>();
-        ArrayList<String> positiveThoughtData = new ArrayList<>();
-        ArrayList<Integer> goalIdData = new ArrayList<>();
-
-        while (data.moveToNext()) {
-            idpData.add(data.getInt(0));
-            positiveThoughtData.add(data.getString(1));
-            goalIdData.add(data.getInt(2));
-        }
-
-        idp = idpData.toArray(new Integer[0]);
-        positiveThought1 = positiveThoughtData.toArray(new String[0]);
-        goalId = goalIdData.toArray(new Integer [0]);
-
-    }
-
-    public String[] getPositiveThoughts(int goalId) {
-        Cursor data = positiveThoughtsDatabaseHelper.getData();
-        ArrayList<String> positiveThoughtData = new ArrayList<>();
-
-        while (data.moveToNext()) {
-            if (data.getInt(2) == goalId) {
-                positiveThoughtData.add(data.getString(1));
-            }
-
-        }
-
-        return positiveThoughtData.toArray(new String[0]);
-
-    }
-
-    private void positiveThoughtsListView() {
-        Cursor data = positiveThoughtsDatabaseHelper.getData();
-        ArrayList<Integer> idpData = new ArrayList<>();
-        ArrayList<String> positiveThoughtData = new ArrayList<>();
-        ArrayList<Integer> goalIdData = new ArrayList<>();
-
-        while (data.moveToNext()) {
-            idpData.add(data.getInt(0));
-            positiveThoughtData.add(data.getString(1));
-            goalIdData.add(data.getInt(2));
-        }
-
-        idp = idpData.toArray(new Integer[0]);
-        positiveThought1 = positiveThoughtData.toArray(new String[0]);
-        goalId = goalIdData.toArray(new Integer [0]);
-
-    }
-
-    public String[] getPositiveThoughts(int goalId) {
-        Cursor data = positiveThoughtsDatabaseHelper.getData();
-        ArrayList<String> positiveThoughtData = new ArrayList<>();
-
-        while (data.moveToNext()) {
-            if (data.getInt(2) == goalId) {
-                positiveThoughtData.add(data.getString(1));
-            }
-
-        }
-
-        return positiveThoughtData.toArray(new String[0]);
-
-    }
 
 
 }

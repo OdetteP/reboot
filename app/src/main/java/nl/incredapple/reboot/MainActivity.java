@@ -25,25 +25,18 @@ public class MainActivity extends AppCompatActivity {
 
     List <String> mGoals;
 
-    Long goalId;
-
-
-    String[] mGetOneGoal;
+    long goalId;
+    List<Long> mGetGoalIds;
+    String[] mGetGoal;
     String[] mGetWhere;
     String[] mGetWhen;
     String[] mGetHow;
     String[] mGetPrecise;
     String[] mGetMore;
 
-    ImageView [] mGetImage1;
-    ImageView [] mGetImage2;
-    ImageView [] mGetImage3;
-
     String [] mGetPositiveThought;
-    String [] getImages;
-    Integer [] mGoalId;
 
-    Context context;
+    String [] getImages;
 
     PositiveThoughtsDatabaseHelper positiveThoughtsDatabaseHelper;
     MoodBoardDatabaseHelper moodBoardDatabaseHelper;
@@ -55,30 +48,27 @@ public class MainActivity extends AppCompatActivity {
 
         goalListView = findViewById(R.id.goalListView);
 
-        DatabaseAdapter databaseAdapter = new DatabaseAdapter();
-        goalListView.setAdapter(databaseAdapter);
 
+        positiveThoughtsDatabaseHelper = new PositiveThoughtsDatabaseHelper(this);
+        moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
         mainModel = new MainModel();
         mainModel.initialize(this);
 
         mGoals = mainModel.getGoals();
-        mGetOneGoal= mainModel.getOneGoal();
+
+        mGetGoal= mainModel.getGoal();
         mGetWhere = mainModel.getWhere();
         mGetWhen = mainModel.getWhen();
         mGetHow = mainModel.getHow();
         mGetPrecise = mainModel.getPrecise();
         mGetMore = mainModel.getMore();
 
-        mGetPositiveThought = positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(1);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            getImages = moodBoardDatabaseHelper.getImageUrlsFor(Math.toIntExact(goalId));
-        }
+        mGetGoalIds = mainModel.getGoalIds();
 
-        MainModel mMainModel = new MainModel();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            thought1EditText.setText(mMainModel.getPositiveThoughts(Math.toIntExact(goalId))[1]);
-        }
+        DatabaseAdapter databaseAdapter = new DatabaseAdapter();
+        goalListView.setAdapter(databaseAdapter);
+
 
         Button moreBtn = findViewById(R.id.moreInfoBtn);
         Button settingsBtn = findViewById(R.id.settingBtn);
@@ -101,16 +91,25 @@ public class MainActivity extends AppCompatActivity {
         goalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Intent intent = getIntent();
+                intent.putExtra("goalId", mGetGoalIds.get(i));
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    getImages = moodBoardDatabaseHelper.getImageUrlsFor(Long.valueOf(Math.toIntExact(mGetGoalIds.get(i))));
+                    mGetPositiveThought = positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(Long.valueOf(Math.toIntExact(mGetGoalIds.get(i))));
+                }
+
                 Intent showSpecificActivity = new Intent(getApplicationContext(), GoalOverViewActivity.class);
-                showSpecificActivity.putExtra("COLUMN_ID", i);
-                showSpecificActivity.putExtra("COLUMN_GOAL", mGetOneGoal[i]);
+                showSpecificActivity.putExtra("COLUMN_ID", mGetGoalIds.get(i));
+                showSpecificActivity.putExtra("COLUMN_GOAL", mGetGoal[i]);
                 showSpecificActivity.putExtra("COLUMN_WHERE", mGetWhere[i]);
                 showSpecificActivity.putExtra("COLUMN_WHEN", mGetWhen[i]);
                 showSpecificActivity.putExtra("COLUMN_HOW", mGetHow[i]);
                 showSpecificActivity.putExtra("COLUMN_PRECISE", mGetPrecise[i]);
                 showSpecificActivity.putExtra("COLUMN_MORE", mGetMore[i]);
-                showSpecificActivity.putExtra("moodboard", getImages[i]);
                 showSpecificActivity.putExtra("positiveThought", mGetPositiveThought[i]);
+                showSpecificActivity.putExtra("moodboard", getImages[i]);
                 startActivity(showSpecificActivity);
             }
         });
@@ -141,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 5;
+            return mGoals.size();
         }
 
         @Override
@@ -166,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
             TextView goalTextView = view.findViewById(R.id.goalTextView);
 
-            goalTextView.setText(String.valueOf(mGoals));
+            goalTextView.setText(String.valueOf(mGoals.get(i)));
 
 
             return view;

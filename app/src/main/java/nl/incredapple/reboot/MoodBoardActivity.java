@@ -81,6 +81,7 @@ public class MoodBoardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 saveImages();
                 Intent nextGoalIntent = new Intent(MoodBoardActivity.this, GoalActivity.class);
+                nextGoalIntent.putExtra("goalId", goalId);
                 startActivity(nextGoalIntent);
             }
         });
@@ -90,6 +91,7 @@ public class MoodBoardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 saveImages();
                 Intent nextToMainIntent = new Intent(MoodBoardActivity.this, MainActivity.class);
+                nextToMainIntent.putExtra("goalId", goalId);
                 startActivity(nextToMainIntent);
             }
         });

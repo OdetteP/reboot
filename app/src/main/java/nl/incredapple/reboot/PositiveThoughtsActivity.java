@@ -35,12 +35,6 @@ public class PositiveThoughtsActivity extends AppCompatActivity {
         thought4EditText = findViewById(R.id.thought4EditText);
         thought5EditText = findViewById(R.id.thought5EditText);
 
-        MainModel mMainModel = new MainModel();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            thought1EditText.setText(mMainModel.getPositiveThoughts(Math.toIntExact(goalId))[1]);
-        }
-
         nextPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

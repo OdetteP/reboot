@@ -47,14 +47,8 @@ public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public Cursor getData(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME;
-        Cursor data  = db.rawQuery(query, null);
-        return data;
-    }
 
-    public String[] getPositiveThoughtsFor(int goalId) {
+    public String[] getPositiveThoughtsFor(Long goalId) {
         final SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> arrayOfPositiveThoughtForGoal = new ArrayList<>();
         db.beginTransaction();
@@ -63,9 +57,9 @@ public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
             Cursor cursor = db.rawQuery(selectQuery, null);
 
             if (cursor.getCount() > 0) {
-                while (cursor.moveToNext()) {
-                    String imageURL = cursor.getColumnName(3);
-                    arrayOfPositiveThoughtForGoal.add(imageURL);
+            while (cursor.moveToNext()) {
+                    String positiveThought = cursor.getColumnName(2);
+                    arrayOfPositiveThoughtForGoal.add(positiveThought);
                 }
             }
 
