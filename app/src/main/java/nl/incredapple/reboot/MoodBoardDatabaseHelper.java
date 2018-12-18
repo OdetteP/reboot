@@ -45,11 +45,11 @@ public class MoodBoardDatabaseHelper  extends SQLiteOpenHelper {
     }
 
 
-    public long insertDestinationURL(String url, Long goalId) {
+    public long insertDestinationURL(String img_url, Long goalId) {
         SQLiteDatabase db = this.getWritableDatabase();
 //        db.beginTransaction();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_IMAGE_URL, url);
+        values.put(COLUMN_IMAGE_URL, img_url);
         values.put(COLUMN_GOAL_ID, goalId);
 
 
@@ -88,7 +88,7 @@ public class MoodBoardDatabaseHelper  extends SQLiteOpenHelper {
 //        }
 //    }
 
-    public String[] getImageUrlsFor(Long goalId) {
+    public List<String> getImageUrlsFor(Long goalId) {
         final SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> arrayOfUrlsForGoal = new ArrayList<>();
         db.beginTransaction();
@@ -98,7 +98,7 @@ public class MoodBoardDatabaseHelper  extends SQLiteOpenHelper {
 
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
-                    String imageURL = cursor.getColumnName(2);
+                    String imageURL = cursor.getString(cursor.getColumnIndex("img_url"));
                     arrayOfUrlsForGoal.add(imageURL);
                 }
             }
@@ -113,6 +113,34 @@ public class MoodBoardDatabaseHelper  extends SQLiteOpenHelper {
             db.close();
             // Close database
         }
-        return arrayOfUrlsForGoal.toArray(new String[0]);
+        return arrayOfUrlsForGoal;
     }
+
+//    public String[] getImageUrlsFor(Long goalId) {
+//        final SQLiteDatabase db = this.getReadableDatabase();
+//        ArrayList<String> arrayOfUrlsForGoal = new ArrayList<>();
+//        db.beginTransaction();
+//        try {
+//            String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GOAL_ID + " = " + goalId;
+//            Cursor cursor = db.rawQuery(selectQuery, null);
+//
+//            if (cursor.getCount() > 0) {
+//                while (cursor.moveToNext()) {
+//                    String imageURL = cursor.getColumnName(1);
+//                    arrayOfUrlsForGoal.add(imageURL);
+//                }
+//            }
+//
+//            db.setTransactionSuccessful();
+//        } catch (SQLiteException e) {
+//            e.printStackTrace();
+//
+//        } finally {
+//            db.endTransaction();
+//            // End the transaction.
+//            db.close();
+//            // Close database
+//        }
+//        return arrayOfUrlsForGoal.toArray(new String[0]);
+//    }
 }

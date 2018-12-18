@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
 
@@ -36,10 +36,10 @@ public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public long insertData (String positiveThought, Long goalId) {
+    public long insertData (String positiveThoughts, Long goalId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_PT1, positiveThought);
+        contentValues.put(COLUMN_PT1, positiveThoughts);
         contentValues.put(COLUMN_GOAL_ID, goalId);
 
         long id = db.insert(TABLE_NAME, null, contentValues);
@@ -47,33 +47,61 @@ public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-
-    public String[] getPositiveThoughtsFor(Long goalId) {
+    public List<String> getPositiveThoughtsFor(long goalId) {
         final SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> arrayOfPositiveThoughtForGoal = new ArrayList<>();
-        db.beginTransaction();
-        try {
-            String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GOAL_ID + " = " + goalId;
-            Cursor cursor = db.rawQuery(selectQuery, null);
+            db.beginTransaction();
+            try {
+                String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GOAL_ID + " = " + goalId;
+                Cursor cursor = db.rawQuery(selectQuery, null);
 
-            if (cursor.getCount() > 0) {
-            while (cursor.moveToNext()) {
-                    String positiveThought = cursor.getColumnName(2);
-                    arrayOfPositiveThoughtForGoal.add(positiveThought);
-                }
-            }
+                    if (cursor.getCount() > 0) {
+                        while (cursor.moveToNext()) {
+                            String positiveThoughts = cursor.getString(cursor.getColumnIndex("positiveThought1"));
+                            arrayOfPositiveThoughtForGoal.add(positiveThoughts);
+                        }
+                    }
 
-            db.setTransactionSuccessful();
-        } catch (SQLiteException e) {
-            e.printStackTrace();
+                db.setTransactionSuccessful();
+            } catch (SQLiteException e) {
+                e.printStackTrace();
 
-        } finally {
-            db.endTransaction();
-            // End the transaction.
-            db.close();
-            // Close database
-        }
-        return arrayOfPositiveThoughtForGoal.toArray(new String[0]);
+            } finally {
+                db.endTransaction();
+                // End the transaction.
+                db.close();
+                // Close database
+
+            }return arrayOfPositiveThoughtForGoal;
     }
+
+//    public String[] getPositiveThoughtsFor(Long goalId) {
+//        final SQLiteDatabase db = this.getReadableDatabase();
+//        ArrayList<String> arrayOfPositiveThoughtForGoal = new ArrayList<>();
+//        db.beginTransaction();
+//        try {
+//            String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GOAL_ID + " = " + goalId;
+//            Cursor cursor = db.rawQuery(selectQuery, null);
+//
+//            if (cursor.getCount() > 0) {
+//            while (cursor.moveToNext()) {
+//                    String positiveThought = cursor.getColumnName(1);
+//                    arrayOfPositiveThoughtForGoal.add(positiveThought);
+//                }
+//            }
+//
+//            db.setTransactionSuccessful();
+//        } catch (SQLiteException e) {
+//            e.printStackTrace();
+//
+//        } finally {
+//            db.endTransaction();
+//            // End the transaction.
+//            db.close();
+//            // Close database
+//        }
+//        return arrayOfPositiveThoughtForGoal.toArray(new String[0]);
+//    }
+
 
 }

@@ -44,6 +44,9 @@ public class GoalOverViewActivity extends AppCompatActivity {
 
         mGetGoalIds = mainModel.getGoalIds();
 
+//        Intent intent = getIntent();
+//        goalId = intent.getIntExtra("goalId" , 0);
+
         goalText = findViewById(R.id.textViewGoal);
         whereText = findViewById(R.id.textViewWhere);
         whenText = findViewById(R.id.textViewWhen);
@@ -51,12 +54,7 @@ public class GoalOverViewActivity extends AppCompatActivity {
         preciseText = findViewById(R.id.textViewPrecise);
         moreText = findViewById(R.id.textViewMore);
 
-        goalText.setText(String.valueOf(mainModel.getGoals()));
-        whereText.setText(String.valueOf(mainModel.getRightWhere()));
-        whenText.setText(String.valueOf(mainModel.getRightWhen()));
-        howText.setText(String.valueOf(mainModel.getRightHow()));
-        preciseText.setText(String.valueOf(mainModel.getRightPrecise()));
-        moreText.setText(String.valueOf(mainModel.getRightMore()));
+
 
 
         moodBoardImage = findViewById(R.id.imageView2);
@@ -69,17 +67,23 @@ public class GoalOverViewActivity extends AppCompatActivity {
         moodBoardImage7 = findViewById(R.id.imageView9);
 
         Intent intent = getIntent();
-        intent.putExtra("goalId" , String.valueOf(mGetGoalIds));
+        goalId = intent.getLongExtra("goalId" , 0);
 
+        goalText.setText(intent.getStringExtra("COLUMN_GOAL"));
+        whereText.setText(intent.getStringExtra("COLUMN_WHERE"));
+        whenText.setText(intent.getStringExtra("COLUMN_WHEN" ));
+        howText.setText(intent.getStringExtra("COLUMN_HOW"));
+        preciseText.setText(intent.getStringExtra("COLUMN_PRECISE"));
+        moreText.setText(intent.getStringExtra("COLUMN_MORE"));
 
-            moodBoardImage.setImageURI(Uri.parse(String.valueOf(moodBoardDatabaseHelper.getImageUrlsFor(mGetGoalIds.get(0)))));
-            moodBoardImage1.setImageURI(Uri.parse(String.valueOf(moodBoardDatabaseHelper.getImageUrlsFor(mGetGoalIds.get(0)))));
-            moodBoardImage2.setImageURI(Uri.parse(String.valueOf(moodBoardDatabaseHelper.getImageUrlsFor(mGetGoalIds.get(0)))));
-            moodBoardImage3.setImageURI(Uri.parse(String.valueOf(moodBoardDatabaseHelper.getImageUrlsFor(mGetGoalIds.get(0)))));
-            moodBoardImage4.setImageURI(Uri.parse(String.valueOf(moodBoardDatabaseHelper.getImageUrlsFor(mGetGoalIds.get(0)))));
-            moodBoardImage5.setImageURI(Uri.parse(String.valueOf(moodBoardDatabaseHelper.getImageUrlsFor(mGetGoalIds.get(0)))));
-            moodBoardImage6.setImageURI(Uri.parse(String.valueOf(moodBoardDatabaseHelper.getImageUrlsFor(mGetGoalIds.get(0)))));
-            moodBoardImage7.setImageURI(Uri.parse(String.valueOf(moodBoardDatabaseHelper.getImageUrlsFor(mGetGoalIds.get(0)))));
+            moodBoardImage.setImageURI(Uri.parse((moodBoardDatabaseHelper.getImageUrlsFor(goalId).get(0))));
+            moodBoardImage1.setImageURI(Uri.parse(moodBoardDatabaseHelper.getImageUrlsFor(goalId).get(1)));
+            moodBoardImage2.setImageURI(Uri.parse(moodBoardDatabaseHelper.getImageUrlsFor(goalId).get(2)));
+            moodBoardImage3.setImageURI(Uri.parse(moodBoardDatabaseHelper.getImageUrlsFor(goalId).get(3)));
+            moodBoardImage4.setImageURI(Uri.parse(moodBoardDatabaseHelper.getImageUrlsFor(goalId).get(4)));
+            moodBoardImage5.setImageURI(Uri.parse(moodBoardDatabaseHelper.getImageUrlsFor(goalId).get(5)));
+            moodBoardImage6.setImageURI(Uri.parse(moodBoardDatabaseHelper.getImageUrlsFor(goalId).get(6)));
+            moodBoardImage7.setImageURI(Uri.parse(moodBoardDatabaseHelper.getImageUrlsFor(goalId).get(7)));
 
 
         thought1Text = findViewById(R.id.textViewPositiveThought1);
@@ -88,13 +92,13 @@ public class GoalOverViewActivity extends AppCompatActivity {
         thought4Text = findViewById(R.id.textViewPositiveThought4);
 
 
-        thought1Text.setText(setPositiveThoughtFor(goalId).get(position));
+//        thought1Text.setText(setPositiveThoughtFor(goalId).get(position));
 
-//
-//            thought1Text.setText(String.valueOf(positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(goalId)));
-//            thought2Text.setText(String.valueOf(positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(goalId)));
-//            thought3Text.setText(String.valueOf(positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(goalId)));
-//            thought4Text.setText(String.valueOf(positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(goalId)));
+
+            thought1Text.setText(positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(goalId).get(0));
+            thought2Text.setText(positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(goalId).get(1));
+            thought3Text.setText(positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(goalId).get(2));
+            thought4Text.setText(positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(goalId).get(3));
 
 
     }

@@ -75,6 +75,63 @@ public class MainModel {
         return goalIds;
     }
 
+    public List<String> getRightWhere() {
+
+        ArrayList<String> where = new ArrayList<String>();
+
+        for (int rij = 0; rij < mWhere.length; rij++) {
+            where.add(mWhere[rij]);
+        }
+
+        return where;
+    }
+
+    public List<String> getRightWhen() {
+
+        ArrayList<String> whenArray = new ArrayList<String>();
+
+        for (int rij = 0; rij < when.length; rij++) {
+            whenArray.add(when[rij]);
+        }
+
+        return whenArray;
+    }
+
+    public List<String> getRightHow() {
+
+        ArrayList<String> howArray = new ArrayList<String>();
+
+        for (int rij = 0; rij < how.length; rij++) {
+            howArray.add(how[rij]);
+        }
+
+        return howArray;
+    }
+
+
+    public List<String> getRightPrecise() {
+
+        ArrayList<String> preciseArray = new ArrayList<String>();
+
+        for (int rij = 0; rij < precise.length; rij++) {
+            preciseArray.add(precise[rij]);
+        }
+
+        return preciseArray;
+    }
+
+    public List<String> getRightMore() {
+
+        ArrayList<String> moreArray = new ArrayList<String>();
+
+        for (int rij = 0; rij < mMore.length; rij++) {
+            moreArray.add(mMore[rij]);
+        }
+
+        return moreArray;
+    }
+
+
     public String[] getGoal() {
         return goal;
     }

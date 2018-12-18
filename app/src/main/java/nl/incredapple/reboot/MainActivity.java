@@ -91,16 +91,15 @@ public class MainActivity extends AppCompatActivity {
         goalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//                Intent intent = getIntent();
+//                intent.putExtra("goalId", mGetGoalIds.get(i));
 
-                Intent intent = getIntent();
-                intent.putExtra("goalId", mGetGoalIds.get(i));
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    getImages = moodBoardDatabaseHelper.getImageUrlsFor(Long.valueOf(Math.toIntExact(mGetGoalIds.get(i))));
-                    mGetPositiveThought = positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(Long.valueOf(Math.toIntExact(mGetGoalIds.get(i))));
-                }
+                    getImages = moodBoardDatabaseHelper.getImageUrlsFor(Long.valueOf(mGetGoalIds.get(i))).toArray(new String[0]);
+                    mGetPositiveThought = positiveThoughtsDatabaseHelper.getPositiveThoughtsFor(Long.valueOf(mGetGoalIds.get(i))).toArray(new String[0]);
 
                 Intent showSpecificActivity = new Intent(getApplicationContext(), GoalOverViewActivity.class);
+                showSpecificActivity.putExtra("goalId", mGetGoalIds.get(i));
                 showSpecificActivity.putExtra("COLUMN_ID", mGetGoalIds.get(i));
                 showSpecificActivity.putExtra("COLUMN_GOAL", mGetGoal[i]);
                 showSpecificActivity.putExtra("COLUMN_WHERE", mGetWhere[i]);
