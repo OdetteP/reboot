@@ -5,20 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IntroActivity"
-    android:background="#009999">
+    android:background="#34B8CA">
+    <!--android:background="#43B2CC">-->
+<!--android:background="#129FCC">-->
 
 
-    <Button
+    <ImageButton
         android:id="@+id/nextToBtn"
-        android:layout_width="266dp"
-        android:layout_height="wrap_content"
+        android:layout_width="69dp"
+        android:layout_height="56dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="22dp"
-        android:background="#CCFFFF"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/next2"
         android:text="Verder "
-        android:textColor="#009999" />
+        android:textColor="#FFFFFF" />
+
 
     <TextView
         android:id="@+id/textView"
@@ -29,7 +32,9 @@
         android:layout_marginStart="38dp"
         android:layout_marginTop="67dp"
         android:text="Hier Intro en nog meer text om even uit te proberen hoe het staat. blabla bla bla bla "
-        android:textColor="#CCFFFF"
+        android:textColor="#FFFFFF"
         android:textSize="36sp" />
+
+
 
 </RelativeLayout>
