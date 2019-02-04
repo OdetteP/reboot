@@ -1,88 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PositiveThoughtsActivity">
+    android:orientation="vertical"
+    tools:context=".PositiveThoughtsActivity"
+    android:background="@color/colorPrimary">
+
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/positive_thought_text"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"
+        />
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="31dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Zet hier je positieve gedachten neer voor je doel"
-        android:textColor="@android:color/black" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/positive_thoughts"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"
+        />
 
     <EditText
         android:id="@+id/thought1EditText"
-        android:layout_width="337dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView9"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="27dp" />
-
-
-    <EditText
-        android:id="@+id/thought4EditText"
-        android:layout_width="337dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/thought3EditText"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="37dp" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:hint="@string/posistive_thought1"
+        android:textColor="@android:color/black" />
 
     <EditText
         android:id="@+id/thought2EditText"
-        android:layout_width="337dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/thought1EditText"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="29dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@android:color/black"
+        android:hint="@string/positive_thought2"
+        />
 
     <EditText
         android:id="@+id/thought3EditText"
-        android:layout_width="337dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/thought2EditText"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="21dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@android:color/black"
+        android:hint="@string/positive_thought3"
+        />
+
+    <EditText
+        android:id="@+id/thought4EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@android:color/black"
+        android:hint="@string/positive_thought4"/>
 
     <EditText
         android:id="@+id/thought5EditText"
-        android:layout_width="337dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/thought4EditText"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="35dp" />
+        android:background="@drawable/rounded_corner"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:hint="@string/positive_thought5" />
 
-    <Button
-        android:id="@+id/exampleBtn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/thought5EditText"
-        android:layout_alignStart="@+id/thought1EditText"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="65dp"
-        android:layout_marginBottom="14dp"
-        android:text="Voorbeelden" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/nextPageBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/thought5EditText"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginBottom="14dp"
-        android:text="Verder" />
+        <ImageButton
+            android:id="@+id/nextPageBtn"
+            android:layout_width="55dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/next2" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/exampleBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/example"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</ScrollView>

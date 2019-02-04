@@ -1,40 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IntroActivity"
-    android:background="#34B8CA">
-    <!--android:background="#43B2CC">-->
-<!--android:background="#129FCC">-->
-
-
-    <ImageButton
-        android:id="@+id/nextToBtn"
-        android:layout_width="69dp"
-        android:layout_height="56dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/next2"
-        android:text="Verder "
-        android:textColor="#FFFFFF" />
-
+    android:background="#34B8CA"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="296dp"
-        android:layout_height="288dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="67dp"
-        android:text="Hier Intro en nog meer text om even uit te proberen hoe het staat. blabla bla bla bla "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
         android:textColor="#FFFFFF"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"/>
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Reboot! "
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"/>
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Design your road! "
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"/>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/nextToBtn"
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginLeft="300dp"
+            android:background="@drawable/next2"
+            android:text="Verder "
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+</LinearLayout>

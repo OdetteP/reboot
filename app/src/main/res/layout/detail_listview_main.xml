@@ -10,5 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="107dp"
-        android:text="Mensen schrijven hun eigen doelen op en die komen hier te staan 5 in totaal " />
+        android:text="Mensen schrijven hun eigen doelen op en die komen hier te staan 5 in totaal "
+        android:textColor="@android:color/white"
+        android:textSize="20dp"/>
 </RelativeLayout>

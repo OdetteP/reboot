@@ -73,4 +73,30 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+
+
+    <string name="details">Verdere details die je kwijt wil</string>
+    <string name="text_goal">Welk doel stel jij jezelf!</string>
+    <string name="het_doel">Het doel</string>
+    <string name="waar">Waar voer je het doel uit?</string>
+    <string name="wanneer">Wanneer voer je het doel uit?</string>
+    <string name="hoe">Hoe voer je het doel uit?</string>
+    <string name="precies">Precieze tijd en plaats</string>
+
+    <string name="example">Voorbeelden</string>
+    <string name="positive_thoughts">Zet hier je positieve gedachten neer voor je doel</string>
+    <string name="moodboard">MoodBoard</string>
+    <string name="image_text">Voeg 9  foto\'s/screenshots toe aan je moodboard</string>
+    <string name="another_goal">Voeg nog een doel toe</string>
+    <string name="goal_overview_text">Klik op het doel om je doel overzicht te zien</string>
+    <string name="positive_thought_text">Positive Gedachten</string>
+    <string name="goal_text">Doel</string>
+    <string name="goal_overview">Doel Overzicht</string>
+    <string name="goals">Doelen</string>
+    <string name="welcome">WELKOM</string>
+    <string name="posistive_thought1">Positieve gedachten 1</string>
+    <string name="positive_thought2">Positieve gedachten 2</string>
+    <string name="positive_thought3">Positieve gedachten 3</string>
+    <string name="positive_thought4">Positieve gedachten 4</string>
+    <string name="positive_thought5">Positieve gedachten 5</string>
 </resources>
