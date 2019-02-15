@@ -13,10 +13,10 @@ public class GoalDatabaseHelper  extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Goals";
     private static final String TABLE_NAME = "G";
     private static final String COLUMN_GOAL = "goal";
-    private static final String COLUMN_WHERE = "mWhere";
-    private static final String COLUMN_WHEN = "mWhen";
-    private static final String COLUMN_HOW = "how";
-    private static final String COLUMN_PRECISE = "precise";
+    private static final String COLUMN_WHERE_WHEN_HOW = "mWhereWhenHow";
+//    private static final String COLUMN_WHEN = "mWhen";
+//    private static final String COLUMN_HOW = "how";
+//    private static final String COLUMN_PRECISE = "precise";
     private static final String COLUMN_MORE = "more";
     private static final String COLUMN_ID = "id";
 
@@ -27,10 +27,10 @@ public class GoalDatabaseHelper  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_GOAL + " STRING, " +
-                COLUMN_WHERE + " STRING, " +
-                COLUMN_WHEN + " STRING, " +
-                COLUMN_HOW + " STRING, " +
-                COLUMN_PRECISE + " STRING, " +
+                COLUMN_WHERE_WHEN_HOW + " STRING, " +
+//                COLUMN_WHEN + " STRING, " +
+//                COLUMN_HOW + " STRING, " +
+//                COLUMN_PRECISE + " STRING, " +
                 COLUMN_MORE + " STRING);";
         db.execSQL(CREATE_TABLE);
     }
@@ -43,14 +43,14 @@ public class GoalDatabaseHelper  extends SQLiteOpenHelper {
 
     }
 
-    public long insertData (String goal, String mWhere, String mWhen, String how, String precise, String more) {
+    public long insertData (String goal, String mWhereWhenHow, String more) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_GOAL, goal);
-        contentValues.put(COLUMN_WHERE, mWhere);
-        contentValues.put(COLUMN_WHEN, mWhen);
-        contentValues.put(COLUMN_HOW, how);
-        contentValues.put(COLUMN_PRECISE, precise);
+        contentValues.put(COLUMN_WHERE_WHEN_HOW, mWhereWhenHow);
+//        contentValues.put(COLUMN_WHEN, mWhen);
+//        contentValues.put(COLUMN_HOW, how);
+//        contentValues.put(COLUMN_PRECISE, precise);
         contentValues.put(COLUMN_MORE, more);
 
         long id = db.insert(TABLE_NAME, null, contentValues);

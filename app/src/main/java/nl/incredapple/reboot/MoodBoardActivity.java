@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,8 +58,7 @@ public class MoodBoardActivity extends AppCompatActivity {
 
         urls = new ArrayList<>();
 
-        Button nextToMainBtn = findViewById(R.id.nextBtn);
-        Button nextGoalBtn = findViewById(R.id.nextGoalBtn);
+        ImageButton nextToMainBtn = findViewById(R.id.nextBtn);
 
         Intent intent = getIntent();
         goalId = intent.getLongExtra("goalId" , 0 );
@@ -76,15 +76,6 @@ public class MoodBoardActivity extends AppCompatActivity {
         moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
 
 
-        nextGoalBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveImages();
-                Intent nextGoalIntent = new Intent(MoodBoardActivity.this, GoalActivity.class);
-                nextGoalIntent.putExtra("goalId", goalId);
-                startActivity(nextGoalIntent);
-            }
-        });
 
         nextToMainBtn.setOnClickListener(new View.OnClickListener() {
             @Override

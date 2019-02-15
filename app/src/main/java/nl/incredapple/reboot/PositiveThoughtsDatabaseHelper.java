@@ -16,7 +16,7 @@ public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Positive Thoughts";
     private static final String TABLE_NAME = "PT";
     private static final String COLUMN_ID = "idp";
-    private static final String COLUMN_PT1 = "positiveThought1";
+    private static final String COLUMN_PT = "positiveThoughts";
     private static final String COLUMN_GOAL_ID = "goalId";
 
     PositiveThoughtsDatabaseHelper(Context context) {super(context, DATABASE_NAME, null, 1);}
@@ -24,7 +24,7 @@ public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_PT1 + " STRING, " +
+                COLUMN_PT + " STRING, " +
                 COLUMN_GOAL_ID + " INTEGER);";
         db.execSQL(CREATE_TABLE);
     }
@@ -39,7 +39,7 @@ public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
     public long insertData (String positiveThoughts, Long goalId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_PT1, positiveThoughts);
+        contentValues.put(COLUMN_PT, positiveThoughts);
         contentValues.put(COLUMN_GOAL_ID, goalId);
 
         long id = db.insert(TABLE_NAME, null, contentValues);
@@ -57,7 +57,7 @@ public class PositiveThoughtsDatabaseHelper extends SQLiteOpenHelper {
 
                     if (cursor.getCount() > 0) {
                         while (cursor.moveToNext()) {
-                            String positiveThoughts = cursor.getString(cursor.getColumnIndex("positiveThought1"));
+                            String positiveThoughts = cursor.getString(cursor.getColumnIndex("positiveThoughts"));
                             arrayOfPositiveThoughtForGoal.add(positiveThoughts);
                         }
                     }

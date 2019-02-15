@@ -1,16 +1,14 @@
 package nl.incredapple.reboot;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,18 +26,21 @@ public class MainActivity extends AppCompatActivity {
     long goalId;
     List<Long> mGetGoalIds;
     String[] mGetGoal;
-    String[] mGetWhere;
-    String[] mGetWhen;
-    String[] mGetHow;
-    String[] mGetPrecise;
+    String[] mGetWhereWhenHow;
+//    String[] mGetWhen;
+//    String[] mGetHow;
+//    String[] mGetPrecise;
     String[] mGetMore;
 
     String [] mGetPositiveThought;
 
     String [] getImages;
 
+    ImageButton nextGoalBtn;
+
     PositiveThoughtsDatabaseHelper positiveThoughtsDatabaseHelper;
     MoodBoardDatabaseHelper moodBoardDatabaseHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         goalListView = findViewById(R.id.goalListView);
 
+        nextGoalBtn = findViewById(R.id.nextGoalBtn);
 
         positiveThoughtsDatabaseHelper = new PositiveThoughtsDatabaseHelper(this);
         moodBoardDatabaseHelper = new MoodBoardDatabaseHelper(this);
@@ -57,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
         mGoals = mainModel.getGoals();
 
         mGetGoal= mainModel.getGoal();
-        mGetWhere = mainModel.getWhere();
-        mGetWhen = mainModel.getWhen();
-        mGetHow = mainModel.getHow();
-        mGetPrecise = mainModel.getPrecise();
+        mGetWhereWhenHow = mainModel.getWhereWhenHow();
+//        mGetWhen = mainModel.getWhen();
+//        mGetHow = mainModel.getHow();
+//        mGetPrecise = mainModel.getPrecise();
         mGetMore = mainModel.getMore();
 
         mGetGoalIds = mainModel.getGoalIds();
@@ -70,23 +72,32 @@ public class MainActivity extends AppCompatActivity {
         goalListView.setAdapter(databaseAdapter);
 
 
-        Button moreBtn = findViewById(R.id.moreInfoBtn);
-        Button settingsBtn = findViewById(R.id.settingBtn);
-
-
-        moreBtn.setOnClickListener(new View.OnClickListener() {
+        nextGoalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View v) {
+                Intent nextGoalIntent = new Intent(MainActivity.this, GoalActivity.class);
+                nextGoalIntent.putExtra("goalId", goalId);
+                startActivity(nextGoalIntent);
             }
         });
 
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+//        Button moreBtn = findViewById(R.id.moreInfoBtn);
+//        Button settingsBtn = findViewById(R.id.settingBtn);
 
-            }
-        });
+
+//        moreBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//
+//        settingsBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 
         goalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -102,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
                 showSpecificActivity.putExtra("goalId", mGetGoalIds.get(i));
                 showSpecificActivity.putExtra("COLUMN_ID", mGetGoalIds.get(i));
                 showSpecificActivity.putExtra("COLUMN_GOAL", mGetGoal[i]);
-                showSpecificActivity.putExtra("COLUMN_WHERE", mGetWhere[i]);
-                showSpecificActivity.putExtra("COLUMN_WHEN", mGetWhen[i]);
-                showSpecificActivity.putExtra("COLUMN_HOW", mGetHow[i]);
-                showSpecificActivity.putExtra("COLUMN_PRECISE", mGetPrecise[i]);
+                showSpecificActivity.putExtra("COLUMN_WHERE_WHEN_HOW", mGetWhereWhenHow[i]);
+//                showSpecificActivity.putExtra("COLUMN_WHEN", mGetWhen[i]);
+//                showSpecificActivity.putExtra("COLUMN_HOW", mGetHow[i]);
+//                showSpecificActivity.putExtra("COLUMN_PRECISE", mGetPrecise[i]);
                 showSpecificActivity.putExtra("COLUMN_MORE", mGetMore[i]);
                 showSpecificActivity.putExtra("positiveThought", mGetPositiveThought[i]);
                 showSpecificActivity.putExtra("moodboard", getImages[i]);

@@ -9,6 +9,8 @@ import android.widget.ImageButton;
 
 public class IntroActivity extends AppCompatActivity {
 
+    MainModel mMainModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,11 +18,20 @@ public class IntroActivity extends AppCompatActivity {
 
         ImageButton nextPage = findViewById(R.id.nextToBtn);
 
+        mMainModel = new MainModel();
+        mMainModel.initialize(this);
+
         nextPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent nextPageIntent = new Intent(IntroActivity.this, GoalActivity.class);
-                startActivity(nextPageIntent);
+//                    if (mMainModel.getGoals().size() > 0) {
+//                        Intent mainPageIntent = new Intent(IntroActivity.this, MainActivity.class);
+//                        startActivity(mainPageIntent);
+//                    } else {
+                        Intent nextPageIntent = new Intent(IntroActivity.this, GoalActivity.class);
+                        startActivity(nextPageIntent);
+//                    }
+//
             }
         });
     }

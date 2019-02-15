@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -23,6 +18,7 @@
         android:text="@string/positive_thought_text"
         android:textColor="@android:color/white"
         android:textSize="28sp"
+        android:textStyle= "bold"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="5dp"
@@ -36,6 +32,7 @@
         android:text="@string/positive_thoughts"
         android:textColor="@android:color/white"
         android:textSize="20sp"
+        android:textStyle= "bold"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="5dp"
@@ -43,7 +40,7 @@
         />
 
     <EditText
-        android:id="@+id/thought1EditText"
+        android:id="@+id/thoughtEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -51,84 +48,80 @@
         android:layout_marginRight="5dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
-        android:hint="@string/posistive_thought1"
+        android:hint="@string/positive_thought1"
+        android:maxLines="20"
+        android:minLines="6"
         android:textColor="@android:color/black" />
 
-    <EditText
-        android:id="@+id/thought2EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_corner"
-        android:textColor="@android:color/black"
-        android:hint="@string/positive_thought2"
-        />
+    <!--<EditText-->
+        <!--android:id="@+id/thought2EditText"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:background="@drawable/rounded_corner"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:hint="@string/positive_thought2"-->
+        <!--/>-->
 
-    <EditText
-        android:id="@+id/thought3EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_corner"
-        android:textColor="@android:color/black"
-        android:hint="@string/positive_thought3"
-        />
+    <!--<EditText-->
+        <!--android:id="@+id/thought3EditText"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:background="@drawable/rounded_corner"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:hint="@string/positive_thought3"-->
+        <!--/>-->
 
-    <EditText
-        android:id="@+id/thought4EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_corner"
-        android:textColor="@android:color/black"
-        android:hint="@string/positive_thought4"/>
+    <!--<EditText-->
+        <!--android:id="@+id/thought4EditText"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:background="@drawable/rounded_corner"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:hint="@string/positive_thought4"/>-->
 
-    <EditText
-        android:id="@+id/thought5EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="10dp"
-        android:hint="@string/positive_thought5" />
+    <!--<EditText-->
+        <!--android:id="@+id/thought5EditText"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/rounded_corner"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:hint="@string/positive_thought5" />-->
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
+
 
         <ImageButton
             android:id="@+id/nextPageBtn"
-            android:layout_width="55dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="200dp"
-            android:background="@drawable/next2" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/next2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <Button
-            android:id="@+id/exampleBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20sp"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/example"
-            android:textColor="@android:color/white" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>
 
-</ScrollView>

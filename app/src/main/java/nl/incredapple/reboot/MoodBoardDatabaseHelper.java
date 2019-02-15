@@ -63,30 +63,6 @@ public class MoodBoardDatabaseHelper  extends SQLiteOpenHelper {
 
     }
 
-//    public void insertDestinationURL(String url, long goalId) {
-//
-//        SQLiteDatabase db = this.getWritableDatabase();
-//
-//        db.beginTransaction();
-//        ContentValues values;
-//
-//        try {
-//            values = new ContentValues();
-//            values.put(COLUMN_IMAGE_URL, url);
-//            values.put(COLUMN_GOAL_ID, goalId);
-//            db.insert(TABLE_NAME, null, values);
-//            db.setTransactionSuccessful();
-//            Log.i("Image..", "Inserted..");
-//        } catch (SQLiteException e) {
-//            e.printStackTrace();
-//
-//        } finally {
-//            db.endTransaction();
-//            // End the transaction.
-//            db.close();
-//            // Close database
-//        }
-//    }
 
     public List<String> getImageUrlsFor(Long goalId) {
         final SQLiteDatabase db = this.getReadableDatabase();

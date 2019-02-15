@@ -1,13 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppThemeIntro" parent="Theme.AppCompat.Light.NoActionBar"/>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        @android:style/Theme.NoTitleBar.Fullscreen
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
 
         <item name="android:textSize">18sp</item>
-        <!--<item name="android:padding">4sp</item>-->
-        <!--<item name="android:layout_margin">2dp</item>-->
 
 
     </style>

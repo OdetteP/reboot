@@ -3,45 +3,45 @@ package nl.incredapple.reboot;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class GoalActivity extends AppCompatActivity {
 
     GoalDatabaseHelper goalDatabaseHelper;
-    Button nextToBtn;
-    EditText goalEditText, whereEditText, whenEditText, howEditText, preciseEditText,moreEditText;
+    ImageButton nextToBtn;
+    EditText goalEditText, whereWhenHowEditText,moreEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
 
-        goalDatabaseHelper = new GoalDatabaseHelper(this);
+      goalDatabaseHelper = new GoalDatabaseHelper(this);
 
         nextToBtn = findViewById(R.id.nextToBtn);
 
         goalEditText = findViewById(R.id.goalEditText);
-        whereEditText = findViewById(R.id.whereEditText);
-        whenEditText = findViewById(R.id.whenEditText);
-        howEditText = findViewById(R.id.howEditText);
-        preciseEditText = findViewById(R.id.preciseEditText);
+        whereWhenHowEditText = findViewById(R.id.whereWhenHowEditText);
+//        whenEditText = findViewById(R.id.whenEditText);
+//        howEditText = findViewById(R.id.howEditText);
+//        preciseEditText = findViewById(R.id.preciseEditText);
         moreEditText = findViewById(R.id.moreEditText);
 
         nextToBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String goal = goalEditText.getText().toString();
-                String where = whereEditText.getText().toString();
-                String when = whenEditText.getText().toString();
-                String how = howEditText.getText().toString();
-                String precise = preciseEditText.getText().toString();
+                String whereWhenHow = whereWhenHowEditText.getText().toString();
+//                String when = whenEditText.getText().toString();
+//                String how = howEditText.getText().toString();
+//                String precise = preciseEditText.getText().toString();
                 String more = moreEditText.getText().toString();
 
-                long goalId = goalDatabaseHelper.insertData(goal, where, when, how, precise, more);
+                long goalId = goalDatabaseHelper.insertData(goal, whereWhenHow, more);
                 if (goalId > 0) {
                     Toast.makeText(GoalActivity.this, "DataSaved", Toast.LENGTH_LONG).show();
                     Intent nextToIntent = new Intent(GoalActivity.this, PositiveThoughtsActivity.class);
